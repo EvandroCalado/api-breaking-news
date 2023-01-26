@@ -5,7 +5,7 @@ const connectDatabase = () => {
 
   mongoose
     .connect(
-      "mongodb+srv://evandro:24122006@cluster0.gwodtve.mongodb.net/?retryWrites=true&w=majority",
+      process.env.MONGODB_URI,
       { useNewUrlParser: true, useUnifiedTopology: true }
     )
     .then(() => console.log("MongoDB Atlas Connected"))

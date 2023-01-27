@@ -1,6 +1,6 @@
 import userService from "../services/user.service.js";
 
-const create = async (req, res) => {
+export const create = async (req, res) => {
   try {
     const { name, username, email, password, avatar, background } = req.body;
 
@@ -30,7 +30,7 @@ const create = async (req, res) => {
   }
 };
 
-const find = async (req, res) => {
+export const find = async (req, res) => {
   try {
     const users = await userService.find();
 
@@ -44,7 +44,7 @@ const find = async (req, res) => {
   }
 };
 
-const findById = async (req, res) => {
+export const findById = async (req, res) => {
   try {
     const user = req.user;
     res.send(user);
@@ -53,7 +53,7 @@ const findById = async (req, res) => {
   }
 };
 
-const update = async (req, res) => {
+ export const update = async (req, res) => {
   try {
     const { name, username, email, password, avatar, background } = req.body;
 
@@ -79,4 +79,3 @@ const update = async (req, res) => {
   }
 };
 
-export default { create, find, findById, update };

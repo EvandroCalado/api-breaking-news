@@ -1,6 +1,11 @@
 import { Router } from "express";
 import { validId, validUser } from "../middlewares/global.middlewares.js";
-import { create, find, findById, update } from "../controllers/user.controller.js";
+import {
+  create,
+  find,
+  findById,
+  update,
+} from "../controllers/user.controller.js";
 
 const router = Router();
 

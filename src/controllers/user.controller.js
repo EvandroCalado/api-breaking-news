@@ -1,4 +1,8 @@
-import userService from "../services/user.service.js";
+import {
+  createService,
+  findService,
+  findByIdService,
+} from "../services/user.service.js";
 
 export const create = async (req, res) => {
   try {
@@ -8,7 +12,7 @@ export const create = async (req, res) => {
       res.status(400).send({ message: "Submit all fields for registration" });
     }
 
-    const user = await userService.create(req.body);
+    const user = await createService(req.body);
 
     if (!user) {
       return res.status(400).send({ message: "Error creating User" });
@@ -32,7 +36,7 @@ export const create = async (req, res) => {
 
 export const find = async (req, res) => {
   try {
-    const users = await userService.find();
+    const users = await findService();
 
     if (users.length === 0) {
       return res.status(400).send({ message: "There are no registered users" });
@@ -53,7 +57,7 @@ export const findById = async (req, res) => {
   }
 };
 
- export const update = async (req, res) => {
+export const update = async (req, res) => {
   try {
     const { name, username, email, password, avatar, background } = req.body;
 
@@ -63,7 +67,7 @@ export const findById = async (req, res) => {
 
     const { id, user } = req;
 
-    await userService.update(
+    await updateService(
       id,
       name,
       username,
@@ -78,4 +82,3 @@ export const findById = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 };
-

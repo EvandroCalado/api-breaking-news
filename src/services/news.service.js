@@ -28,3 +28,32 @@ export const updateService = (id, title, text, banner) =>
     { title, text, banner },
     { rawResult: true }
   );
+
+export const eraseService = (id) => News.findOneAndDelete({ _id: id });
+
+export const likeService = (id, userId) =>
+  News.findOneAndUpdate(
+    { _id: id, "likes.userId": { $nin: [userId] } },
+    { $push: { likes: { userId, created: new Date() } } }
+  );
+
+export const deleteLikeService = (id, userId) =>
+  News.findOneAndUpdate({ _id: id }, { $pull: { likes: { userId } } });
+
+export const addCommentService = (id, comment, userId) => {
+  const idComment = Math.floor(Date.now() * Math.random()).toString(36);
+  return News.findOneAndUpdate(
+    { _id: id },
+    {
+      $push: {
+        comments: { idComment, userId, comment, createdAt: new Date() },
+      },
+    }
+  );
+};
+
+export const deleteCommentService = (id, idComment, userId) =>
+  News.findOneAndUpdate(
+    { _id: id },
+    { $pull: { comments: { idComment, userId } } }
+  );

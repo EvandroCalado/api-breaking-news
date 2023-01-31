@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { authMiddleware } from "../middlewares/auth.middleware.js";
 import {
   create,
   find,
@@ -7,8 +8,11 @@ import {
   searchByTitle,
   findByUser,
   update,
+  erase,
+  like,
+  addComment,
+  deleteComment,
 } from "../controllers/news.controller.js";
-import { authMiddleware } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
@@ -18,6 +22,10 @@ router.get("/top", topNews);
 router.get("/search", searchByTitle);
 router.get("/byUser", authMiddleware, findByUser);
 router.get("/:id", authMiddleware, findById);
-router.patch("/:id", authMiddleware, update)
+router.patch("/:id", authMiddleware, update);
+router.delete("/:id", authMiddleware, erase);
+router.patch("/like/:id", authMiddleware, like);
+router.patch("/comment/:id", authMiddleware, addComment);
+router.patch("/comment/:id/:idComment", authMiddleware, deleteComment);
 
 export default router;

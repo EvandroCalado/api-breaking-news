@@ -1,7 +1,6 @@
 import {
   createService,
   findService,
-  findByIdService,
 } from "../services/user.service.js";
 
 export const create = async (req, res) => {

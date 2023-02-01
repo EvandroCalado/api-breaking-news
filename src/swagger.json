@@ -14,10 +14,6 @@
       "description": "Render Server"
     },
     {
-      "url": "https://api-breaking-news.vercel.app",
-      "description": "Vercel Server"
-    },
-    {
       "url": "http://localhost:3000",
       "description": "Local Server"
     }
